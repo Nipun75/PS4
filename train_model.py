@@ -81,10 +81,10 @@ def train_model(save=True):
         "test_f1": float(f1_score(y_test, predictions)),
         "confusion_matrix": confusion_matrix(y_test, predictions).tolist(),
         "gini_best_cv_f1": float(max(
-            r["mean_test_score"] for r in search.cv_results_ if r["param_tree__criterion"] == "gini"
+            r["mean_test_score"] for r in search.cv_results_ if str(r["param_tree__criterion"]) == "gini"
         )),
         "entropy_best_cv_f1": float(max(
-            r["mean_test_score"] for r in search.cv_results_ if r["param_tree__criterion"] == "entropy"
+            r["mean_test_score"] for r in search.cv_results_ if str(r["param_tree__criterion"]) == "entropy"
         )),
     }
 
